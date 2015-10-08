@@ -6,24 +6,22 @@
 void cifra(){
 	FILE *fileChave;
 	FILE *fileMensagem;
-	int c = 0, i = 0, j = 0;
+	int c = 0;
+	int count = 0;
 	char chave[999];
 	char mensagem[999];
 
-	fileChave = fopen("chave.txt", "r");
+
 	fileMensagem = fopen("mensagem.txt", "r");
 
-	//copia o conteudo do ficheiro "chave.txt" para um array de char
-	while ((c = fgetc(fileChave)) != EOF) {
-		printf("char: %c \n", c); //mostra no ecra a chave
-        chave[i] = c;
-    }
+
 
     //copia o conteudo do ficheiro "mensagem.txt" para um array de char
 	while ((c = fgetc(fileMensagem)) != EOF) {
 		printf("char: %c \n", c); //mostra no ecra a mensagem
-        mensagem[j] = c;
+        count++; //saber o tamanho maximo da mensagem
     }
+    printf ("\nNum char da mensagem: %d", count); //LINHA DE TESTE - APAGAR NO FINAL
 
     
 
@@ -35,7 +33,7 @@ void cifra(){
 	3. fazer a correspondencia letra chave vs letra da mensagem
 	*/
 
-	fclose(fileChave);
+
 	fclose(fileMensagem);
 }
 
