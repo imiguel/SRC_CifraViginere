@@ -17,8 +17,8 @@ void cifra(){
 
 
     //copia o conteudo do ficheiro "mensagem.txt" para um array de char
-	while ((c = fgetc(fileMensagem)) != EOF) {
-		printf("char: %c \n", c); //mostra no ecra a mensagem
+    while ((c = fgetc(fileMensagem)) != EOF) {
+	printf("char: %c \n", c); //mostra no ecra a mensagem
         count++; //saber o tamanho maximo da mensagem
     }
     printf ("\nNum char da mensagem: %d", count); //LINHA DE TESTE - APAGAR NO FINAL
