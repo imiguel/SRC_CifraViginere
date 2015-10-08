@@ -37,6 +37,10 @@ void cifra(){
 	fclose(fileMensagem);
 }
 
+void decifra(){
+	//
+}
+
 int main(int argc, char* argv[]){
 	
 	char input[2];
