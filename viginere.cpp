@@ -13,9 +13,7 @@ void cifra(){
 
 
 	////////////////
-	//            //
 	//  MENSAGEM  //
-	//            //
 	////////////////
 	fileMensagem = fopen("mensagem.txt", "r");
 
@@ -27,17 +25,15 @@ void cifra(){
     }
     //printf ("\nNum char da mensagem: %d\n\n", countToKeyArray); //LINHA DE TESTE - APAGAR NO FINAL
     //printf("\n\nMENSAGEM: %s\n", mensagem); //LINHA DE TESTE - APAGAR NO FINAL
-
 	fclose(fileMensagem);
 
 
 	/////////////
-	//         //
 	//  CHAVE  //
-	//         //
 	/////////////
 	fileChave = fopen("chave.txt", "r");
-	char chaveArray[countToKeyArray]; //cria o array de char com o tamanho da mensagem para poder cifrar
+	//char chaveArray[countToKeyArray]; //cria o array de char com o tamanho da mensagem para poder cifrar
+	char chaveArray[999];
 
 	printf("\n"); //APAGAR
 	//copiar do ficheiro cahev.txt para o array chave
@@ -48,7 +44,7 @@ void cifra(){
 	}
 	fclose(fileChave);
 
-
+	for(int i = 0; i < )
 
 
 
