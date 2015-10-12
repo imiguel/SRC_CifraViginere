@@ -2,13 +2,16 @@
 #include <string.h>
 
 
+
 //metodo para cifrar a mensagem
 void cifra(){
 	FILE *fileChave;
 	FILE *fileMensagem;
-	int m = 0, c = 0, aux = 0;
-	int countToKeyArray = 0;
+	int m = 0, c = 0;
+	int countMsgChar = 0, countKeyChar = 0;
 	char mensagemArray[999];
+	char *dest;
+	char *dest2;
 	
 
 
@@ -20,8 +23,8 @@ void cifra(){
     //Conta os chars do ficheiro "mensagem.txt". Permite determinar quantos char são necessarios para a chave.
 	while ((m = fgetc(fileMensagem)) != EOF) {
 		printf("char: %c \n", m);           //mostra no ecra os char da mensagem (APAGAR ESTA LINHA)
-		mensagemArray[countToKeyArray] = m; //copia para o array mensagem a mensagem vinda do ficheiro txt
-        countToKeyArray++;                  //saber o tamanho maximo da mensagem. Vai contando o num de char
+		mensagemArray[countMsgChar] = m; //copia para o array mensagem a mensagem vinda do ficheiro txt
+        countMsgChar++;                  //saber o tamanho maximo da mensagem. Vai contando o num de char
     }
     //printf ("\nNum char da mensagem: %d\n\n", countToKeyArray); //LINHA DE TESTE - APAGAR NO FINAL
     //printf("\n\nMENSAGEM: %s\n", mensagem); //LINHA DE TESTE - APAGAR NO FINAL
@@ -39,12 +42,23 @@ void cifra(){
 	//copiar do ficheiro cahev.txt para o array chave
 	while( (c = fgetc(fileChave)) != EOF ){
 		printf("char: %c \n", c);      //mostra no ecra os char da mensagem (APAGAR ESTA LINHA)
-		chaveArray[aux] = c;
-		aux++;
+		chaveArray[countKeyChar] = c;
+		countKeyChar++;
 	}
 	fclose(fileChave);
 
-	for(int i = 0; i < )
+	
+
+	//////////////
+	//  CIFRAR  //
+	//////////////
+	dest=strdup(mensagemArray);
+	for(int i = 0; i < countMsgChar; i++){
+		//dest[i] = 'a' + (chaveArray[i % countMsgChar] + 26) % 26; //funciona e o resultado: uxctaaa
+		//dest[i] -= (chaveArray[i % countMsgChar] + 26) % 26;  //funciona e o resultado: YNpaola -> cifra ate ao tamanho da chave...
+		dest[i] = 'a' + chaveArray[i % countKeyChar] - 'a'; // assim duplica a chave pelo tamanho do array da mensagem
+	}
+
 
 
 
@@ -52,10 +66,11 @@ void cifra(){
 
 
 	//TESTES
-	printf ("\nNum char da mensagem: %d", countToKeyArray); //LINHA DE TESTE - APAGAR NO FINAL
-	printf ("\n   Num char da chave: %d\n\n", aux); //LINHA DE TESTE - APAGAR NO FINAL
-    printf("\n\nMENSAGEM: %s", mensagemArray); //LINHA DE TESTE - APAGAR NO FINAL
-    printf("\n   CHAVE: %s\n", chaveArray); //LINHA DE TESTE - APAGAR NO FINAL
+	printf("\nNum char da mensagem: %d", countMsgChar); //LINHA DE TESTE - APAGAR NO FINAL
+	printf("\n   Num char da chave: %d\n\n", countKeyChar); //LINHA DE TESTE - APAGAR NO FINAL
+    printf("\n\n    MENSAGEM: %s", mensagemArray); //LINHA DE TESTE - APAGAR NO FINAL
+    printf("\n       CHAVE: %s", chaveArray); //LINHA DE TESTE - APAGAR NO FINAL
+    printf("\n MSG DUPLICADA: %s\n\n", dest); // LINHA DE TESTE - APAGAR NO FINAL
 
 }
 
